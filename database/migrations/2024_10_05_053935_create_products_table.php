@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->double('price');
+            $table->integer('quantity');
+            $table->string('image')->nullable();
+            $table->unsignedBigInteger('supplier_id')->nullable();
+            // $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->timestamps();
         });
     }
