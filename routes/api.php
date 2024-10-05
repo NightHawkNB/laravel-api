@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
@@ -16,4 +17,12 @@ Route::patch("/suppliers/update/{id}", [SupplierController::class, "update"]);
 Route::delete("/suppliers/delete/{id}", [SupplierController::class, "delete"]);
 Route::post("/suppliers/search", [SupplierController::class, "search"]);
 
-// Route::get('/products/get/{id}')
+Route::get('/products/getAll', [ProductController::class, 'getAll']);
+Route::get('/products/get/sup/{id}', [ProductController::class, 'getBySupplierId']);
+Route::patch('/products/update/{id}', [ProductController::class, 'update']);
+Route::delete('/products/delete/{id}', [ProductController::class, 'delete']);
+
+//* Tesitng endpoints
+Route::post('/products/createMultiple/{id?}', [ProductController::class, 'createMultiple']);
+Route::post('/products/create/{id?}', [ProductController::class, 'create']);
+

@@ -61,7 +61,7 @@ class SupplierController extends Controller
             'content' => $suppliers
         ];
 
-        return response()->json($response, 200);
+        return response()->json($response, $response['status']);
         // Requires pagination
     }
 
@@ -143,7 +143,7 @@ class SupplierController extends Controller
             'content' => $suppliers
         ];
 
-        return response()->json($response, 200);
+        return response()->json($response, $response['status']);
     }
 
 
@@ -159,6 +159,6 @@ class SupplierController extends Controller
             'content' => $suppliers
         ];
 
-        return response()->json($response, 200);
+        return response()->json($response, $response['status']);
     }
 }
