@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Supplier;
 
 /*
 
@@ -88,7 +89,19 @@ class ProductController extends Controller
             $product->price = $request->price;
             $product->quantity = $request->quantity;
             $product->image = $request->image;
-            $product->supplier_id = $id ?? null;
+
+            //? Checking if the supplier exists
+            $supplier = Supplier::find($id);
+
+            if($supplier) {
+                $product->supplier_id = $id;
+            } else {
+                $response = [
+                    'status' => 404,
+                    'message' => "Supplier not found"
+                ];
+                return response()->json($response, $response['status']);
+            }
 
             // TODO - handle image uploading part
 

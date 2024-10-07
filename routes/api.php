@@ -15,7 +15,7 @@ Route::get("/suppliers/getAll", [SupplierController::class,"getAllPaginated"]);
 Route::post("/suppliers/create", [SupplierController::class, "create"]);
 Route::patch("/suppliers/update/{id}", [SupplierController::class, "update"]);
 Route::delete("/suppliers/delete/{id}", [SupplierController::class, "delete"]);
-Route::post("/suppliers/search", [SupplierController::class, "search"]);
+Route::get("/suppliers/search", [SupplierController::class, "search"]);
 
 Route::get('/products/getAll', [ProductController::class, 'getAll']);
 Route::get('/products/get/sup/{id}', [ProductController::class, 'getBySupplierId']);

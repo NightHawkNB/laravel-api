@@ -17,8 +17,7 @@ return new class extends Migration
             $table->double('price');
             $table->integer('quantity');
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('supplier_id')->nullable();
-            // $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->timestamps();
         });
     }
