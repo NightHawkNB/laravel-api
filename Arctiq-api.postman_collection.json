@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "c4611f4c-3d6f-496e-a6d3-3d98a0a10535",
+		"name": "Arctiq-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24823696"
+	},
+	"item": [
+		{
+			"name": "Suppliers",
+			"item": [
+				{
+					"name": "Get all suppliers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/suppliers/get",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"suppliers",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get supplier by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/suppliers/get/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"suppliers",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get supplier by Id - Paginated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/suppliers/getAll?page=1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"suppliers",
+								"getAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update supplier by Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Nipun Bathiya\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/suppliers/update/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"suppliers",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete supplier by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Nipun Bathiya\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/suppliers/delete/22",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"suppliers",
+								"delete",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a supplier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Nipun Bathiya\",\r\n    \"email\" : \"nipunc@gmail.com\",\r\n    \"password\" : \"password\",\r\n    \"contact\" : \"Akash Ravindu\",\r\n    \"mobile\" : \"0711223344\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/suppliers/create",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"suppliers",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search suppliers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mobile\" : \"0711111111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/suppliers/search",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"suppliers",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create a single product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Logitech Mouse\",\r\n    \"price\" : 1120.75,\r\n    \"quantity\" : 15,\r\n    \"image\" : \"/images/log_mouse.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/products/create/4",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"products",
+								"create",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create multiple products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\" : \"Logitech Headset\",\r\n        \"price\" : 1800.50,\r\n        \"quantity\" : 6,\r\n        \"image\" : \"/images/log_headset.jpg\"\r\n    },\r\n    {\r\n        \"name\" : \"Logitech Keyboard\",\r\n        \"price\" : 2500.00,\r\n        \"quantity\" : 5,\r\n        \"image\" : \"/images/log_keyboard.jpg\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/products/createMultiple/2",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"products",
+								"createMultiple",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/products/getAll",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"products",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product by supplier Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/products/get/sup/2",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"products",
+								"get",
+								"sup",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product by ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"supplier_id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/products/update/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"products",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a product by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"supplier_id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/products/delete/1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"products",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/test",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DB Connection Testing",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/db-connection",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"db-connection"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "api_url",
+			"value": "localhost:8000/api",
+			"type": "string"
+		}
+	]
+}

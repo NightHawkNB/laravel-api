@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Product;
 
 class SupplierController extends Controller
 {
@@ -30,6 +31,7 @@ class SupplierController extends Controller
             ];
         } else {
 
+            //* Creating the supplier
             $supplier = new Supplier();
             $supplier->name = $request->name;
             $supplier->email = $request->email;
@@ -38,15 +40,42 @@ class SupplierController extends Controller
             $supplier->mobile = $request->mobile;
             $supplier->save();
 
-            $response = [
-                'status' => 201,
-                'message' => "Created",
-                'content' => $supplier
-            ];
+            try {
+
+                $savedSupplier = new Supplier();
+                $savedSupplier = Supplier::where('email', $supplier->email)->first();
+
+                //* Saving the products
+                if($request->products) {
+                    foreach (json_decode($request->products, true) as $productData) {
+                        $product = new Product();
+                        $product->name = $productData['name'];
+                        $product->price = $productData['price'];
+                        $product->quantity = $productData['quantity'];
+                        $product->image = $productData['image'];
+                        $product->supplier_id = $savedSupplier->id;
+                        $product->save();
+
+                        // TODO - handle image uploading part
+                    }
+                }
+
+                $response = [
+                    'status' => 201,
+                    'message' => "Created",
+                    'content' => $supplier
+                ];
+            } catch (\Exception $e) {
+                $response = [
+                    'status' => 500,
+                    'message' => "Error",
+                    'content' => $e->getMessage()
+                ];
+            }
+
         }
 
         return response()->json($response, $response['status']);
-        // Should include logic to add the supplies (multiple) to the database
     }
 
 
@@ -62,7 +91,6 @@ class SupplierController extends Controller
         ];
 
         return response()->json($response, $response['status']);
-        // Requires pagination
     }
 
     //* Get a single supplier
@@ -149,16 +177,38 @@ class SupplierController extends Controller
 
     //* Search based on the name and the mobile numbers
     public function search(Request $request) {
-        $suppliers = Supplier::where('name', 'like', '%'.$request->name.'%')
-            ->orWhere('mobile', 'like', '%'.$request->mobile.'%')
+        $query = $request->input('query');
+
+        $suppliers = Supplier::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('mobile', 'LIKE', "%{$query}%")
             ->get();
 
-        $response = [
-            'status' => 200,
-            'message' => "Found",
-            'content' => $suppliers
-        ];
+        return response()->json($suppliers);
+    }
+}
 
-        return response()->json($response, $response['status']);
+
+function createMultipleProducts(array $productsList, int $id = null) {
+
+    $products = [];
+
+    try {
+        foreach ($productsList as $productData) {
+            $product = new Product();
+            $product->name = $productData['name'];
+            $product->price = $productData['price'];
+            $product->quantity = $productData['quantity'];
+            $product->image = $productData['image'];
+            $product->supplier_id = $id;
+            $products[] = $product;
+            $product->save();
+
+            // TODO - handle image uploading part
+        }
+
+        return $products;
+
+    } catch (\Exception $e) {
+        return false;
     }
 }
