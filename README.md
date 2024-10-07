@@ -43,19 +43,13 @@ This is the backend part of the Arctiq application built with Laravel.
     DB_PASSWORD=your_mysql_password (no password by default)
     ```
 
-4. Generate an application key:
-
-    ```bash
-    php artisan key:generate
-    ```
-
-5. Run the migrations and seeders to set up the database:
+4. Run the migrations and seeders to set up the database:
 
     ```bash
     php artisan migrate --seed
     ```
 
-6. Serve the Laravel backend:
+5. Serve the Laravel backend:
 
     ```bash
     php artisan serve
